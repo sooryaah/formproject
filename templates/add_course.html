@@ -1,0 +1,80 @@
+{% extends 'base.html' %}
+
+{% block title %}Add Course{% endblock %}
+
+
+{% block content %}
+{% load static %}
+<style>
+    body {
+        background-image: url("{% static 'images/img1.jpg' %}");
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+        min-height: 100vh; /* Ensure background covers entire viewport */
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 0;
+    }
+
+   
+    .form-label {
+        font-weight: bold;
+        color: black;
+    }
+
+    .btn-success {
+        background-color: lightseagreen;
+        border: none;
+    }
+
+    .btn-success:hover {
+        background-color: lightskyblue;
+        transition: all 0.3s ease;
+    }
+</style>
+
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-lg-6 col-md-8 col-sm-10">
+            <div class="card shadow-lg">
+                <div class="card-header bg-purple text-center">
+                    <h3>Add Course</h3>
+                </div>
+                <div class="card-body">
+                    <form method="post" action="{% url 'add_coursedb' %}">
+                        {% csrf_token %}
+                        <div class="mb-3">
+                            <label for="courseName" class="form-label">Enter Course Name</label>
+                            <input 
+                                type="text" 
+                                class="form-control" 
+                                id="courseName" 
+                                name="course_name" 
+                                placeholder="e.g., Python Programming" 
+                                required
+                            >
+                        </div>
+                        <div class="mb-3">
+                            <label for="courseFee" class="form-label">Enter Course Fee</label>
+                            <input 
+                                type="number" 
+                                class="form-control" 
+                                id="courseFee" 
+                                name="fee" 
+                                placeholder="e.g., 5000" 
+                                required
+                            >
+                        </div>
+                        <div class="d-grid">
+                            <button type="submit" class="btn btn-success">Submit</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+

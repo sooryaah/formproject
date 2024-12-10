@@ -1,0 +1,50 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Home - Welcome to Our Website
+{% endblock %}
+
+{% block content %}
+{% load static %}
+<style>
+  body {
+    background-image: url("{% static 'images/img1.jpg' %}"); /* Replace with your image URL */
+    background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+        height: 400px;
+        background-size: cover;
+         /* Adjust height as needed */
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    color: black;
+  }
+
+  .welcome-container {
+    text-align: center;
+    margin-top: 100px;
+    /* Semi-transparent black background */
+    padding: 20px;
+    border-radius: 10px;
+    display: inline-block;
+  }
+
+  .welcome-container h1 {
+    font-size: 3rem;
+    font-weight: bold;
+  }
+
+  .welcome-container p {
+    font-size: 1.5rem;
+    margin-top: 10px;
+  }
+</style>
+
+<div class="d-flex justify-content-center align-items-center vh-100">
+  <div class="welcome-container">
+    <h1>Welcome to Our Website</h1>
+    <p>We're glad to have you here. Explore and enjoy!</p>
+  </div>
+</div>
+{% endblock %}

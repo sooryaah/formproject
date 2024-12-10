@@ -1,0 +1,139 @@
+{% extends 'base.html' %}
+
+{% block title %}Add Student{% endblock %}
+
+{% block content %}
+{% load static %}
+<style>
+    body {
+        background-image: url("{% static 'images/img1.jpg' %}");
+        
+    }
+    
+
+    .form-container {
+        margin-top: 5%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .card {
+        border-radius: 10px;
+        box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+        width: 100%;
+        max-width: 500px;
+    }
+
+    .card-header {
+        
+        color:black;
+        font-size: 1.5rem;
+        text-align: center;
+        padding: 1rem;
+        border-top-left-radius: 10px;
+        border-top-right-radius: 10px;
+    }
+
+    .card-body {
+        padding: 2rem;
+    }
+
+    .form-control,
+    .form-select {
+        border-radius: 5px;
+        box-shadow: inset 0px 1px 3px rgba(0, 0, 0, 0.1);
+        margin-bottom: 1rem;
+        padding: 0.8rem;
+        font-size: 1rem;
+    }
+
+    .btn-submit {
+        background-color: lightskyblue;
+        color: white;
+        font-size: 1rem;
+        padding: 0.8rem;
+        border: none;
+        border-radius: 5px;
+        width: 100%;
+        box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.15);
+        transition: 0.3s ease;
+    }
+
+    .btn-submit:hover {
+        background-color: lightcoral;
+        box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.25);
+    }
+
+    @media (max-width: 768px) {
+        .card {
+            margin: 0 1rem;
+        }
+
+        .card-body {
+            padding: 1rem;
+        }
+    }
+</style>
+
+<div class="container form-container">
+    <div class="card">
+        <div class="card-header">
+            Add Student
+        </div>
+        <div class="card-body">
+            <form method="post" action="{% url 'add_studentdb' %}">
+                {% csrf_token %}
+                <div>
+                    <input
+                        type="text"
+                        class="form-control"
+                        name="student_name"
+                        placeholder="Enter Name"
+                        required
+                    />
+                </div>
+                <div>
+                    <input
+                        type="text"
+                        class="form-control"
+                        name="student_address"
+                        placeholder="Address"
+                        required
+                    />
+                </div>
+                <div>
+                    <input
+                        type="number"
+                        class="form-control"
+                        name="age"
+                        placeholder="Enter Age"
+                        required
+                    />
+                </div>
+                <div>
+                    <input
+                        type="date"
+                        class="form-control"
+                        name="date"
+                        required
+                    />
+                </div>
+                <div>
+                    <select
+                        class="form-select"
+                        name="sel"
+                        required
+                    >
+                        <option value="" disabled selected>Select Course</option>
+                        {% for c in course %}
+                        <option value="{{ c.id }}">{{ c.course_name }}</option> 
+                        {% endfor %}
+                    </select>
+                </div>
+                <button type="submit" class="btn btn-submit">Submit</button>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}
